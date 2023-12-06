@@ -1,0 +1,105 @@
+#include <stdio.h>
+#include<stdlib.h>
+struct node
+{
+    int data;
+    struct node *next;
+};
+struct node *start=NULL;
+struct node *create(struct node*);
+struct node *display(struct node*);
+struct node *begin(struct node*);
+struct node *end(struct node*);
+
+void main() {
+    start=create(start);
+    start=display(start);
+    
+    start=begin(start);  
+    start=display(start);
+    
+    start=end(start);
+    start=display(start);
+}struct node *create(struct node *start)
+{
+    struct node *newnode,*ptr;
+    int num;
+    printf("Enter -1 to end list ,or otherwise continue: \n");
+    scanf("%d",&num);
+    while(num!=-1)
+    {
+        newnode=(struct node*)malloc(sizeof(struct node));
+        newnode->data=num;
+        if(start==NULL)
+        {
+            start=newnode;
+            newnode->next=start;
+        }
+        else
+        {
+            ptr=start;
+            while(ptr->next!=start)
+            {
+                ptr=ptr->next;
+            }
+            ptr->next=newnode;
+            newnode->next=start;
+        }
+        printf("Enter -1 to end list,or otherwise continue\n");
+        scanf("%d",&num);
+    }
+    return start;
+}
+struct node *display(struct node *start)
+{
+    struct node *ptr;
+    ptr=start;
+    printf("Elements of list : ");
+    while(ptr->next!=start)
+    {
+        printf(" %d",ptr->data);
+        ptr=ptr->next;
+    }
+    printf(" %d",ptr->data);
+    return start;
+}
+struct node *begin(struct node *start)
+{
+    struct node *newnode,*ptr;
+    newnode=(struct node*)malloc(sizeof(struct node));
+    printf("\nenter newnode of data:");
+    scanf("%d",&newnode->data);
+    ptr=start;
+    while(ptr->next!=start)
+    {
+        ptr=ptr->next;
+    }
+    ptr->next=newnode;
+    newnode->next=start;
+    start=newnode;
+    return start;
+}
+struct node *end(struct node *start)
+{
+    struct node *newnode,*ptr;
+    newnode=(struct node*)malloc(sizeof(struct node));
+    printf("\nEnter newnode at end:");
+    scanf("%d",&newnode->data);
+    ptr=start;
+    while(ptr->next!=start)
+    {
+        ptr=ptr->next;
+    }
+    ptr->next=newnode;
+    newnode->next=start;
+    return start;
+}
+
+
+
+
+
+
+
+
+
